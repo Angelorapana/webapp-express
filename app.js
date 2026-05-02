@@ -2,12 +2,17 @@
 
 const express = require("express");
 const app = express();
-const moviesRoutes = require("./routes/movieRoutes");
-const notFound = require("./middleware/notFound");
 
+const moviesRoutes = require("./routes/movieRoutes");
+app.use("/movies", moviesRoutes);
+
+
+const notFound = require("./middleware/notFound");
 app.use(notFound);
 
-app.use("/movies", moviesRoutes);
+const errorHandler = require("./middleware/errorHandler");
+app.use(errorHandler);
+
 
 require("./db/collegamento");
 
