@@ -1,0 +1,18 @@
+const mysql = require("mysql2");
+
+const collegamento = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "Boolean26!", 
+  database: "movies_db" 
+});
+
+collegamento.connect((err) => {
+  if (err) {
+    console.error("Errore connessione:", err);
+    return;
+  }
+  console.log("Connesso al database!");
+});
+
+module.exports = collegamento;
