@@ -8,6 +8,7 @@ app.use(express.static("public"));
 require("./db/collegamento");
 
 app.use(express.json());
+app.use(cors())
 
 const moviesRoutes = require("./routes/movieRoutes");
 app.use("/movies", moviesRoutes);
