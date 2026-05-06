@@ -21,7 +21,7 @@ const show = (req, res) => {
   const movieSql = "SELECT * FROM movies WHERE id = ?";
   const reviewsSql = "SELECT * FROM reviews WHERE movie_id = ?";
 
-  connection.query(movieSql, [id], (err, movieResults) => {
+  collegamento.query(movieSql, [id], (err, movieResults) => {
     if (err) {
       return res.status(500).json({ error: "Errore database" });
     }
@@ -32,7 +32,7 @@ const show = (req, res) => {
 
     const movie = movieResults[0];
 
-    connection.query(reviewsSql, [id], (err, reviewResults) => {
+    collegamento.query(reviewsSql, [id], (err, reviewResults) => {
       if (err) {
         return res.status(500).json({ error: "Errore database" });
       }
