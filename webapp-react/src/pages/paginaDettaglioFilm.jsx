@@ -16,10 +16,11 @@ function PaginaDettaglioFilm() {
       .get(`http://localhost:3000/movies/${params.id}`)
       .then((res) => {
 
-        console.log(res.data);
-
         setMovie(res.data);
 
+      })
+      .catch((err) => {
+        console.log(err);
       });
 
   }
@@ -32,34 +33,63 @@ function PaginaDettaglioFilm() {
 
   return (
     <>
-      <h1>Pagina Dettaglio Film</h1>
+      <div className="container py-5">
 
-      {movie && (
-        <>
-          <h2>{movie.title}</h2>
+        {movie && (
+          <>
 
-          <h3>RECENSIONI</h3>
+            <div className="card shadow p-4 mb-5">
 
-          {movie.reviews.map((review) => (
+              <h1 className="mb-3">
+                {movie.title}
+              </h1>
 
-            <div key={review.id}>
-
-              <h4>{review.name}</h4>
-
-              <p>Voto: {review.vote}</p>
-
-              <p>{review.text}</p>
+              <p>
+                Lorem ipsum descrizione film
+              </p>
 
             </div>
 
-          ))}
+            <div className="mb-5">
 
-          <ReviewForm
-            movieId={movie.id}
-            fetchMovie={fetchMovie}
-          />
-        </>
-      )}
+              <h2 className="mb-4">
+                Recensioni
+              </h2>
+
+              {movie.reviews.map((review) => (
+
+                <div
+                  key={review.id}
+                  className="card p-3 mb-3 shadow-sm"
+                >
+
+                  <h5>{review.name}</h5>
+
+                  <p>
+                    <strong>Voto:</strong> {review.vote}
+                  </p>
+
+                  <p>{review.text}</p>
+
+                </div>
+
+              ))}
+
+            </div>
+
+            <div className="card shadow p-4">
+
+              <ReviewForm
+                movieId={movie.id}
+                fetchMovie={fetchMovie}
+              />
+
+            </div>
+
+          </>
+        )}
+
+      </div>
     </>
   );
 }

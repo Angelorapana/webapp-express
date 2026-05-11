@@ -48,9 +48,14 @@ export default function ReviewForm({ movieId, fetchMovie }) {
 
   return (
     <>
-      <h2>AGGIUNGI RECENSIONE</h2>
+      <h2 className="mb-4">
+        Aggiungi Recensione
+      </h2>
 
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        className="d-flex flex-column gap-3"
+      >
 
         <input
           type="text"
@@ -58,6 +63,7 @@ export default function ReviewForm({ movieId, fetchMovie }) {
           placeholder="Nome"
           value={formData.name}
           onChange={handleChange}
+          className="form-control"
         />
 
         <input
@@ -66,6 +72,7 @@ export default function ReviewForm({ movieId, fetchMovie }) {
           placeholder="Voto"
           value={formData.vote}
           onChange={handleChange}
+          className="form-control"
         />
 
         <textarea
@@ -73,9 +80,10 @@ export default function ReviewForm({ movieId, fetchMovie }) {
           placeholder="Recensione"
           value={formData.text}
           onChange={handleChange}
+          className="form-control"
         ></textarea>
 
-        <button>
+        <button className="btn btn-primary">
           Invia
         </button>
 
