@@ -44,4 +44,41 @@ const show = (req, res) => {
   });
 };
 
-module.exports = { index, show };
+
+const storeReview = (req, res) => {
+
+  const id = req.params.id;
+
+  const { name, vote, text } = req.body;
+
+  const sql = `
+    INSERT INTO reviews
+    (name, vote, text, movie_id)
+    VALUES (?, ?, ?, ?)
+  `;
+
+  collegamento.query(
+    sql,
+    [name, vote, text, id],
+    (err, result) => {
+
+      if (err) {
+        return res.status(500).json({
+          error: "Errore database"
+        });
+      }
+
+      res.status(201).json({
+        message: "Recensione aggiunta"
+      });
+
+    }
+  );
+
+};
+
+module.exports = {
+  index,
+  show,
+  storeReview
+};

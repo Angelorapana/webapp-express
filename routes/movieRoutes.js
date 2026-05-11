@@ -4,5 +4,7 @@ const moviesController = require("../controllers/controllerMovies");
 
 router.get("/", moviesController.index);
 router.get("/:id", moviesController.show);
+router.post("/:id/reviews", moviesController.storeReview);
+
 
 module.exports = router;
